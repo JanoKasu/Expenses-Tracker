@@ -1,5 +1,4 @@
 import pandas as pd
-from PySide6.QtCore import QModelIndex
 from PySide6.QtWidgets import QTableWidget
 
 class expenses_table(QTableWidget):
@@ -14,3 +13,9 @@ class expenses_table(QTableWidget):
 
         headers = self.df.columns.values
         self.setHorizontalHeaderLabels(headers)
+
+    def add_entry_to_table(self, name, amount, type, date):
+        print('Name:', name)
+        print('Amount:', amount)
+        print('Type:', type)
+        print('Date:', date)
