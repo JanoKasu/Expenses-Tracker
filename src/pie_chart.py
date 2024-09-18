@@ -17,7 +17,8 @@ class pie_chart(QVBoxLayout):
 		self.series.setLabelsVisible(True)
 
 		for type, count in zip(self.types, self.counts):
-			self.series.append(type, count)
+			if type != 'Income':
+				self.series.append(type, count)
 		
 		self.chart = QChart()
 		self.chart.addSeries(self.series)
@@ -30,11 +31,12 @@ class pie_chart(QVBoxLayout):
 		self.addWidget(self.chart_view)
 		self.update()
 
-	def update_chart(self):
-		df = pd.read_csv('expenses.csv')
-		self.series.clear()
-		self.types = df['Type'].value_counts().index.tolist()
-		self.counts = df['Type'].value_counts(normalize=True).tolist()
+	def update_chart(self, type):
+		if type != 'Income':
+			df = pd.read_csv('expenses.csv')
+			self.series.clear()
+			self.types = df['Type'].value_counts().index.tolist()
+			self.counts = df['Type'].value_counts(normalize=True).tolist()
 
-		for type, count in zip(self.types, self.counts):
-			self.series.append(type, count)
+			for type, count in zip(self.types, self.counts):
+				self.series.append(type, count)
