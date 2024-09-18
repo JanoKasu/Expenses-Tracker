@@ -32,7 +32,6 @@ class pie_chart(QVBoxLayout):
 
 	def update_chart(self):
 		df = pd.read_csv('expenses.csv')
-		print(df)
 		self.series.clear()
 		self.types = df['Type'].value_counts().index.tolist()
 		self.counts = df['Type'].value_counts(normalize=True).tolist()

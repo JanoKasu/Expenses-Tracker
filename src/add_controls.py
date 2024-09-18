@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton
+from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton, QLabel
 
 class add_controls(QVBoxLayout):
     
@@ -28,3 +28,4 @@ class add_controls(QVBoxLayout):
         self.name.setText('')
         self.amount.setText('')
         self.type.setCurrentIndex(-1)
+
