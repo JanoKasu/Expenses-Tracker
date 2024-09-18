@@ -1,6 +1,4 @@
-from expenses_table import expenses_table
 from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton
-from PySide6.QtCore import Signal
 
 class add_controls(QVBoxLayout):
     

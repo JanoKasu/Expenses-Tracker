@@ -1,6 +1,5 @@
 import pandas as pd
 from PySide6.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
-from PySide6.QtCore import Slot
 
 class expenses_table(QTableWidget):
     def __init__(self):
@@ -27,10 +26,6 @@ class expenses_table(QTableWidget):
         self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
 
 
-    @Slot(str)
-    @Slot(str)
-    @Slot(str)
-    @Slot(str)
     def add_entry_to_table(self, name, amount, type, date):
         try:
             # Add entry to the csv

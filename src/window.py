@@ -1,6 +1,6 @@
 from main_widget import main_widget
 from PySide6.QtCore import QSize
-from PySide6.QtWidgets import QMainWindow, QHBoxLayout, QTableWidget, QPushButton
+from PySide6.QtWidgets import QMainWindow
 
 class window(QMainWindow):
     def __init__(self):

@@ -4,27 +4,38 @@ from PySide6.QtWidgets import QVBoxLayout
 from PySide6.QtGui import QPainter
 
 class pie_chart(QVBoxLayout):
-	def __init__(self, df):
+	def __init__(self):
 		super().__init__()
-		self.create_pie_chart(df)
+		self.create_pie_chart()
 
-	def create_pie_chart(self, df: pd.DataFrame):
-		series = QPieSeries()
-		types = df['Type'].value_counts().index.tolist()
-		counts = df['Type'].value_counts(normalize=True).tolist()
+	def create_pie_chart(self):
+		df = pd.read_csv('expenses.csv')
+		self.series = QPieSeries()
+		self.types = df['Type'].value_counts().index.tolist()
+		self.counts = df['Type'].value_counts(normalize=True).tolist()
+		self.series.setHoleSize(0.4)
+		self.series.setLabelsVisible(True)
 
-		for type, count in zip(types, counts):
-			series.append(type, count)
+		for type, count in zip(self.types, self.counts):
+			self.series.append(type, count)
+		
+		self.chart = QChart()
+		self.chart.addSeries(self.series)
+		self.chart.setTitle('Expenses')
+		self.chart.legend().hide()
+		
+		
+		self.chart_view = QChartView(self.chart)
+		self.chart_view.setRenderHint(QPainter.Antialiasing)
+		self.addWidget(self.chart_view)
+		self.update()
 
-		series.setHoleSize(0.4)
-		series.setLabelsVisible(True)
-		
-		chart = QChart()
-		chart.addSeries(series)
-		chart.setTitle('Expenses')
-		chart.legend().hide()
-		
-		
-		chart_view = QChartView(chart)
-		chart_view.setRenderHint(QPainter.Antialiasing)
-		self.addWidget(chart_view)
+	def update_chart(self):
+		df = pd.read_csv('expenses.csv')
+		print(df)
+		self.series.clear()
+		self.types = df['Type'].value_counts().index.tolist()
+		self.counts = df['Type'].value_counts(normalize=True).tolist()
+
+		for type, count in zip(self.types, self.counts):
+			self.series.append(type, count)
