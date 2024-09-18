@@ -1,27 +1,45 @@
 import pandas as pd
-from PySide6.QtWidgets import QTableWidget
+from PySide6.QtWidgets import QTableWidget, QTableWidgetItem, QHeaderView
 from PySide6.QtCore import Slot
 
 class expenses_table(QTableWidget):
-    def __init__(self, dataframe: pd.DataFrame):
+    def __init__(self):
         super().__init__()
-        self.df = dataframe
+        self.df = pd.read_csv('expenses.csv')
         self.populate_table()
 
+
     def populate_table(self):
-        self.setRowCount(len(self.df.index))
-        self.setColumnCount(len(self.df.columns))
+        print('Populating Table...')
+        self.df = pd.read_csv('expenses.csv')
+        num_rows = len(self.df.index)
+        num_cols = len(self.df.columns)
+        self.setRowCount(num_rows)
+        self.setColumnCount(num_cols)
 
         headers = self.df.columns.values
         self.setHorizontalHeaderLabels(headers)
 
+        for i in range(num_rows):
+            for j in range(num_cols):
+                self.setItem(i, j, QTableWidgetItem(str(self.df.iat[i, j])))
+
+        self.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+
+
     @Slot(str)
     @Slot(str)
     @Slot(str)
     @Slot(str)
-    def add_entry_to_table(name, amount, type, date):
-        with open('expenses.csv', 'a') as csv:
-            name = name.replace(',', '')
-            amount = float(amount.replace(',', ''))
-            if name and amount and type and date:
-                csv.write(f'\n{name},{amount},{type},{date}')
+    def add_entry_to_table(self, name, amount, type, date):
+        try:
+            # Add entry to the csv
+            with open('expenses.csv', 'a') as csv:
+                name = name.replace(',', '')
+                amount = float(amount.replace(',', ''))
+                if name and amount and type and date:
+                    csv.write(f'\n{name},{amount},{type},{date}')
+            # Update the table
+            self.populate_table()
+        except ValueError:
+            print('Type something in the textboxes.')
