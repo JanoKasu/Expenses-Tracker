@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton
+from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton, QLabel
 
 class add_controls(QVBoxLayout):
     
@@ -23,4 +23,3 @@ class add_controls(QVBoxLayout):
         self.button_submit.setText('Submit')
 
         self.addWidget(self.button_submit)
-

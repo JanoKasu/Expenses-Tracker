@@ -1,3 +1,8 @@
-Name,Amount,Type,Date
-Shirt,25.0,Clothing,2024-09-18
-Milk,10.0,Food,2024-09-18
+Name,Amount,Type,Date,Balance
+x,7.0,Groceries,2024-09-18,0
+x,7.0,Groceries,2024-09-18,-7.0
+x,7.0,Groceries,2024-09-18,-14.0
+x,-10.0,Income,2024-09-18,-4.0
+x,-10.0,Income,2024-09-18,6.0
+x,-10.0,Income,2024-09-18,16.0
+Paycheck,700.0,Income,2024-09-18,716.0
