@@ -21,7 +21,7 @@ class pie_chart(QVBoxLayout):
 		
 		self.chart = QChart()
 		self.chart.addSeries(self.series)
-		self.chart.setTitle('Expenses')
+		self.chart.setTitle('Total Expenses')
 		self.chart.legend().hide()
 		
 		

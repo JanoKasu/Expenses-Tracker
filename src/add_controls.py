@@ -21,6 +21,10 @@ class add_controls(QVBoxLayout):
 
         self.button_submit = QPushButton()
         self.button_submit.setText('Submit')
-
         self.addWidget(self.button_submit)
 
+
+    def reset(self):
+        self.name.setText('')
+        self.amount.setText('')
+        self.type.setCurrentIndex(-1)

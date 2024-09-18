@@ -35,5 +35,4 @@ class main_widget(QWidget):
                                          str(datetime.date.today()))
         self.expenses.repaint()
         self.chart.update_chart()
-
-        
+        self.controls.reset()
