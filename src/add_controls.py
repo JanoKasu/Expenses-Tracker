@@ -1,10 +1,14 @@
 import datetime
+from expenses_table import expenses_table
 from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton
+from PySide6.QtCore import Signal
 
 class add_controls(QVBoxLayout):
+    entry = Signal(str, str, str, str)
+    
     def __init__(self):
         super().__init__()
-        
+
         # Add dropdowns for adding expense
         self.name = QTextEdit()
         self.name.setPlaceholderText('Add the name of the expense here')
@@ -19,9 +23,20 @@ class add_controls(QVBoxLayout):
         self.type.addItems(['Food', 'Clothing', 'Groceries', 'Income'])
         self.addWidget(self.type)
 
-        self.submit = QPushButton()
-        self.submit.setText('Submit')
-        # self.submit.clicked.connect(expenses_table.add_entry_to_table)
-        # pass these to that slot
-        # (self.name.toPlainText(), self.amount.toPlainText(), self.type.currentIndex(), datetime.date.today())
-        self.addWidget(self.submit)
+        self.button_submit = QPushButton()
+        self.button_submit.setText('Submit')
+        self.button_submit.clicked.connect(self.add_entry_to_table)
+        self.entry.connect(expenses_table.add_entry_to_table)
+
+        self.addWidget(self.button_submit)
+
+    def add_entry_to_table(self):
+        print("Adding Entry to Table")
+        self.entry.emit(self.name.toPlainText(),
+                        self.amount.toPlainText(),
+                        self.type.currentText(),
+                        str(datetime.date.today())
+                        )
+
+
+        
