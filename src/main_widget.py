@@ -19,6 +19,7 @@ class main_widget(QWidget):
 
         self.controls = add_controls()
         self.controls.button_submit.clicked.connect(self.signal_entry_to_table)
+        self.controls.button_delete.clicked.connect(self.delete_row)
         vertical_layout.addLayout(self.controls, 50)
 
         self.chart = pie_chart()
@@ -36,3 +37,7 @@ class main_widget(QWidget):
         self.expenses.repaint()
         self.chart.update_chart(self.controls.type.currentText())
         self.controls.reset()
+
+
+    def delete_row(self):
+        self.expenses.delete_table_row()

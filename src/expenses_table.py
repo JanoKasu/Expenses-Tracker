@@ -27,8 +27,8 @@ class expenses_table(QTableWidget):
 
     def add_entry_to_table(self, name, amount, type, date):
         try:
-            name = name.replace(',', '')
-            amount = float(amount.replace(',', ''))
+            name = name.split(',')[0]
+            amount = round(float(amount), 2)
             if type != 'Income':
                 amount *= -1
             df = pd.read_csv('expenses.csv')
@@ -44,3 +44,9 @@ class expenses_table(QTableWidget):
             self.populate_table()
         except ValueError:
             print('Fill in the fields.')
+
+    def delete_table_row(self):
+        index = self.currentIndex().row()
+        self.removeRow(index)
+        
+        # Update the csv to reflect these changes
