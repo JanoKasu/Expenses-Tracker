@@ -26,18 +26,21 @@ class expenses_table(QTableWidget):
 
 
     def add_entry_to_table(self, name, amount, type, date):
-        name = name.replace(',', '')
-        amount = float(amount.replace(',', ''))
-        if type != 'Income':
-            amount *= -1
-        df = pd.read_csv('expenses.csv')
-        if df['Balance'].empty:
-            balance = 0 if type != 'Income' else amount
-        else:
-            balance = df['Balance'].iloc[-1] + amount
-        # Add entry to the csv
-        with open('expenses.csv', 'a') as csv:
-            if name and amount and type and date:
-                csv.write(f'\n{name},{amount},{type},{date},{balance}')
-        # Update the table
-        self.populate_table()
+        try:
+            name = name.replace(',', '')
+            amount = float(amount.replace(',', ''))
+            if type != 'Income':
+                amount *= -1
+            df = pd.read_csv('expenses.csv')
+            if df['Balance'].empty:
+                balance = 0 if type != 'Income' else amount
+            else:
+                balance = df['Balance'].iloc[-1] + amount
+            # Add entry to the csv
+            with open('expenses.csv', 'a') as csv:
+                if name and amount and type and date:
+                    csv.write(f'\n{name},{amount},{type},{date},{balance}')
+            # Update the table
+            self.populate_table()
+        except ValueError:
+            print('Fill in the fields.')
