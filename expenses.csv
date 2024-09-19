@@ -1,8 +1,2 @@
 Name,Amount,Type,Date,Balance
-x,7.0,Groceries,2024-09-18,0
-x,7.0,Groceries,2024-09-18,-7.0
-x,7.0,Groceries,2024-09-18,-14.0
-x,-10.0,Income,2024-09-18,-4.0
-x,-10.0,Income,2024-09-18,6.0
-x,-10.0,Income,2024-09-18,16.0
-Paycheck,700.0,Income,2024-09-18,716.0
+Income,500.0,Income,2024-09-18,500.0

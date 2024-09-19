@@ -1,4 +1,7 @@
-from PySide6.QtWidgets import QVBoxLayout, QTextEdit, QComboBox, QPushButton, QLabel
+import re
+from PySide6.QtGui import QRegularExpressionValidator
+from PySide6.QtCore import QRegularExpression
+from PySide6.QtWidgets import QVBoxLayout, QComboBox, QPushButton, QLineEdit
 
 class add_controls(QVBoxLayout):
     
@@ -6,12 +9,14 @@ class add_controls(QVBoxLayout):
         super().__init__()
 
         # Add dropdowns for adding expense
-        self.name = QTextEdit()
+        self.name = QLineEdit()
         self.name.setPlaceholderText('Add the name of the expense here')
         self.addWidget(self.name)
 
-        self.amount = QTextEdit()
+        self.amount = QLineEdit()
         self.amount.setPlaceholderText('Add the amount here')
+        validator = QRegularExpressionValidator(QRegularExpression('^[0-9.]+'))
+        self.amount.setValidator(validator)
         self.addWidget(self.amount)
 
         self.type = QComboBox()

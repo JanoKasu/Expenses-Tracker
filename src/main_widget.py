@@ -29,8 +29,8 @@ class main_widget(QWidget):
         self.setLayout(main_layout)
 
     def signal_entry_to_table(self):
-        self.expenses.add_entry_to_table(self.controls.name.toPlainText(),
-                                         self.controls.amount.toPlainText(),
+        self.expenses.add_entry_to_table(self.controls.name.text(),
+                                         self.controls.amount.text(),
                                          self.controls.type.currentText(),
                                          str(datetime.date.today()))
         self.expenses.repaint()
