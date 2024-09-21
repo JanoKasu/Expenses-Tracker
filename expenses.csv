@@ -1,11 +1,6 @@
 Name,Amount,Type,Date,Balance
-Income,350.0,Income,2024-09-19,350.0
-Food,-12.0,Food,2024-09-19,338.0
-Income,12.0,Income,2024-09-19,350.0
-shirt,-12.0,Clothing,2024-09-19,338.0
-Income,3000.0,Income,2024-09-19,3338.0
-Income,3000.0,Income,2024-09-19,6338.0
-Income,3000.0,Income,2024-09-19,9338.0
-Income,30000.0,Income,2024-09-19,39338.0
-Food,-130923.0,Food,2024-09-19,-91585.0
-Income,91585.0,Income,2024-09-19,0.0
+
+Starting Balance,116.95,Income,2024-09-21,116.95
+Credit Card Bill,-71.98,Misc,2024-09-21,44.97
+Cash,20.0,Income,2024-09-21,64.97
+Dog Sitting,200.0,Income,2024-09-21,264.97

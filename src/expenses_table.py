@@ -46,7 +46,12 @@ class expenses_table(QTableWidget):
             print('Fill in the fields.')
 
     def delete_table_row(self):
+        if not self.selectedIndexes():
+            return None
         index = self.currentIndex().row()
         self.removeRow(index)
         
         # Update the csv to reflect these changes
+        df = pd.read_csv('expenses.csv')
+        df = df.drop(index=index)
+        df.to_csv('expenses.csv', index=False)

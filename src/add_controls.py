@@ -21,13 +21,13 @@ class add_controls(QVBoxLayout):
 
         self.type = QComboBox()
         self.type.setPlaceholderText('Type of expense')
-        self.type.addItems(['Food', 'Clothing', 'Groceries', 'Income'])
+        self.type.addItems(['Food', 'Clothing', 'Groceries', 'Rent', 'Utilities', 'Misc', 'Income'])
         self.addWidget(self.type)
 
         horizontal_layout = QHBoxLayout()
 
         self.button_submit = QPushButton()
-        self.button_submit.setText('Submit')
+        self.button_submit.setText('Add Row')
         horizontal_layout.addWidget(self.button_submit)
 
         self.button_delete = QPushButton()
