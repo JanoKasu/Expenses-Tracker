@@ -1,8 +1,14 @@
 from PySide6.QtWidgets import QApplication
 from window import window
 
-app = QApplication([])
-window = window()
-window.show()
-
-app.exec()
+if __name__ == '__main__':
+	try:
+		open('expenses.csv', 'r')
+	except FileNotFoundError:
+		f = open('expenses.csv', 'x')
+		f.write('Name,Amount,Type,Date,Balance\n')
+		f.close()
+	app = QApplication([])
+	window = window()
+	window.show()
+	app.exec()
