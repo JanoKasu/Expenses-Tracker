@@ -6,7 +6,7 @@ if __name__ == '__main__':
 		open('expenses.csv', 'r')
 	except FileNotFoundError:
 		f = open('expenses.csv', 'x')
-		f.write('Name,Amount,Type,Date,Balance\n')
+		f.write('Name,Amount,Type,Date,Balance')
 		f.close()
 	app = QApplication([])
 	window = window()
