@@ -29,17 +29,21 @@ class expenses_table(QTableWidget):
         try:
             name = name.split(',')[0]
             amount = round(float(amount), 2)
+            df = pd.read_csv('expenses.csv')
+
             if type != 'Income':
                 amount *= -1
-            df = pd.read_csv('expenses.csv')
+
             if df['Balance'].empty:
-                balance = 0 if type != 'Income' else amount
+                balance = amount
             else:
                 balance = df['Balance'].iloc[-1] + amount
+            
             # Add entry to the csv
             with open('expenses.csv', 'a') as csv:
                 if name and amount and type and date:
                     csv.write(f'\n{name},{amount},{type},{date},{balance}')
+            
             # Update the table
             self.populate_table()
         except ValueError:
