@@ -23,6 +23,7 @@ class main_widget(QWidget):
         vertical_layout.addLayout(self.controls, 50)
 
         self.chart = pie_chart()
+        self.controls.button_delete.clicked.connect(self.chart.update_chart)
         vertical_layout.addLayout(self.chart, 50)
         
         main_layout.addLayout(vertical_layout, 33)

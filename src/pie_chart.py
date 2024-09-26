@@ -11,14 +11,16 @@ class pie_chart(QVBoxLayout):
 	def create_pie_chart(self):
 		df = pd.read_csv('expenses.csv')
 		self.series = QPieSeries()
-		self.types = df['Type'].value_counts().index.tolist()
-		self.counts = df['Type'].value_counts(normalize=True).tolist()
 		self.series.setHoleSize(0.4)
 		self.series.setLabelsVisible(True)
+		dict = {}
 
-		for type, count in zip(self.types, self.counts):
+		for type, value in zip(df['Type'], df['Amount']):
+			dict[type] = dict[type] + value if type in dict else value
+
+		for key, value in dict.items():
 			if type != 'Income':
-				self.series.append(type, count)
+				self.series.append(key, value)
 		
 		self.chart = QChart()
 		self.chart.addSeries(self.series)
@@ -35,8 +37,11 @@ class pie_chart(QVBoxLayout):
 		df = pd.read_csv('expenses.csv')
 		df = df[df.Type != 'Income']
 		self.series.clear()
-		self.types = df['Type'].value_counts().index.tolist()
-		self.counts = df['Type'].value_counts(normalize=True).tolist()
+		dict = {}
 
-		for type, count in zip(self.types, self.counts):
-			self.series.append(type, count)
+		for type, value in zip(df['Type'], df['Amount']):
+			dict[type] = dict[type] + value if type in dict else value
+
+		for key, value in dict.items():
+			if type != 'Income':
+				self.series.append(key, value)
